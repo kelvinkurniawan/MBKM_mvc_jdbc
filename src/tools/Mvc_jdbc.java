@@ -16,6 +16,9 @@ public class Mvc_jdbc {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+
+        DBConnection dbc = new DBConnection();
+        System.out.println(dbc.getConnection());
     }
     
 }
