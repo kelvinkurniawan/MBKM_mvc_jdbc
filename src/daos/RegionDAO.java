@@ -33,10 +33,7 @@ public class RegionDAO {
             
             while(resultSet.next()) {
                 Region region = new Region();
-                region.setRegionid(resultSet.getInt(1));
-                region.setRegionName(resultSet.getString(2));
-                
-                regions.add(region);
+                regions.add(new Region(resultSet.getInt(1), resultSet.getString(2)));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -44,18 +41,68 @@ public class RegionDAO {
         
         return regions;
     } 
-    
+
+    public Region getById(int id){
+
+        Region region = new Region();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM regions WHERE region_id = ?");
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                region.setId(resultSet.getInt(1));
+                region.setName(resultSet.getString(2));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return region;
+    }
+
     public boolean insert(Region region){
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO regions(region_id, region_name) VALUES (?, ?)");
-            preparedStatement.setInt(1, region.getRegionid());
-            preparedStatement.setString(2, region.getRegionName());
+            preparedStatement.setInt(1, region.getId());
+            preparedStatement.setString(2, region.getName());
             preparedStatement.execute();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
+        return false;
+    }
+
+    public boolean update(Region region){
+        try {
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("UPDATE regions SET region_id = ?, region_name = ? WHERE region_id = ?");
+            preparedStatement.setInt(1, region.getId());
+            preparedStatement.setString(2, region.getName());
+            preparedStatement.setInt(3, region.getId());
+            preparedStatement.execute();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public boolean delete(int id){
+        try {
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("DELETE FROM regions WHERE region_id = ?");
+            preparedStatement.setInt(1, id);
+            preparedStatement.execute();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return false;
     }
     

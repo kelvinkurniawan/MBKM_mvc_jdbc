@@ -10,37 +10,37 @@ package models;
  * @author kelvi
  */
 public class Region {
-    private int regionid;
-    private String regionName;
+    private int id;
+    private String name;
     
     public Region(){
         
     }
 
-    public Region(int regionid, String regionName) {
-        this.regionid = regionid;
-        this.regionName = regionName;
+    public Region(int id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
-    public int getRegionid() {
-        return regionid;
+    public int getId() {
+        return id;
     }
 
-    public void setRegionid(int regionid) {
-        this.regionid = regionid;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getRegionName() {
-        return regionName;
+    public String getName() {
+        return name;
     }
 
-    public void setRegionName(String regionName) {
-        this.regionName = regionName;
+    public void setName(String name) {
+        this.name = name;
     }
     
     @Override
     public String toString() {
-        return "Region{" + "regionid=" + regionid + ", regionName=" + regionName + '}';
+        return "Region{" + "id=" + id + ", name=" + name + '}';
     }
 
     
