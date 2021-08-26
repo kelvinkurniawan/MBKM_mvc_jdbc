@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import models.Region;
+import tools.Query;
 
 /**
  *
@@ -28,7 +29,7 @@ public class RegionDAO {
         
         try {
             ResultSet resultSet = connection
-                    .prepareStatement("SELECT * FROM regions")
+                    .prepareStatement(Query.GET_REGION.getDisplayQuery())
                     .executeQuery();    
             
             while(resultSet.next()) {
@@ -47,7 +48,7 @@ public class RegionDAO {
         Region region = new Region();
 
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM regions WHERE region_id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement(Query.GET_BY_ID_REGION.getDisplayQuery());
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -79,7 +80,7 @@ public class RegionDAO {
     public boolean update(Region region){
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("UPDATE regions SET region_id = ?, region_name = ? WHERE region_id = ?");
+                    .prepareStatement(Query.UPDATE_REGION.getDisplayQuery());
             preparedStatement.setInt(1, region.getId());
             preparedStatement.setString(2, region.getName());
             preparedStatement.setInt(3, region.getId());
@@ -95,7 +96,7 @@ public class RegionDAO {
     public boolean delete(int id){
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("DELETE FROM regions WHERE region_id = ?");
+                    .prepareStatement(Query.DELETE_REGION.getDisplayQuery());
             preparedStatement.setInt(1, id);
             preparedStatement.execute();
             return true;

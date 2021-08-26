@@ -28,13 +28,13 @@ public class Mvc_jdbc {
         RegionDAO regionDAO = new RegionDAO(dbc.getConnection());
 
         // Test insert
-//        System.out.println(
-//            regionDAO.insert(
-//                new Region(6, "Antartica")
-//            ) ?
-//            "Insert Succesfully" :
-//            "Insert Failed"
-//        );
+        System.out.println(
+            regionDAO.insert(
+                new Region(6, "Antartica")
+            ) ?
+            "Insert Succesfully" :
+            "Insert Failed"
+        );
 
         // Test update
         Region updateRegion = new Region(6, "Africa");
@@ -47,7 +47,6 @@ public class Mvc_jdbc {
         }
 
         // Test getById
-
         Region regionById = new Region();
         regionById = regionDAO.getById(1);
 
@@ -56,7 +55,6 @@ public class Mvc_jdbc {
         System.out.println("Id " + regionById.getId() + " - " + regionById.getName());
 
         // Test Delete
-
         String result = regionDAO.delete(6) ? "Deleted" : "Failed to delete";
         System.out.println(result);
         
