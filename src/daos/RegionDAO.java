@@ -65,7 +65,7 @@ public class RegionDAO {
 
     public boolean insert(Region region){
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO regions(region_id, region_name) VALUES (?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement(Query.INSERT_REGION.getDisplayQuery());
             preparedStatement.setInt(1, region.getId());
             preparedStatement.setString(2, region.getName());
             preparedStatement.execute();
@@ -98,6 +98,21 @@ public class RegionDAO {
             PreparedStatement preparedStatement = connection
                     .prepareStatement(Query.DELETE_REGION.getDisplayQuery());
             preparedStatement.setInt(1, id);
+            preparedStatement.execute();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public boolean insertOrUpdate(Region region){
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(Query.INSERT_OR_UPDATE_REGION.getDisplayQuery());
+            preparedStatement.setInt(1, region.getId());
+            preparedStatement.setString(2, region.getName());
+            preparedStatement.setString(3, region.getName());
             preparedStatement.execute();
             return true;
         } catch (Exception e) {

@@ -27,36 +27,40 @@ public class Mvc_jdbc {
         // Dependency Injection
         RegionDAO regionDAO = new RegionDAO(dbc.getConnection());
 
+        regionDAO.insertOrUpdate(new Region(7, "Antarkita"));
+
         // Test insert
-        System.out.println(
-            regionDAO.insert(
-                new Region(6, "Antartica")
-            ) ?
-            "Insert Succesfully" :
-            "Insert Failed"
-        );
+//        System.out.println(
+//            regionDAO.insert(
+//                new Region(6, "Antartica")
+//            ) ?
+//            "Insert Succesfully" :
+//            "Insert Failed"
+//        );
 
         // Test update
-        Region updateRegion = new Region(6, "Africa");
-        String resultUpdate = regionDAO.update(updateRegion) ? "updated!" : "failed to update";
-        System.out.println(resultUpdate);
+//        Region updateRegion = new Region(6, "Africa");
+//        String resultUpdate = regionDAO.update(updateRegion) ? "updated!" : "failed to update";
+//        System.out.println(resultUpdate);
 
         // Test GetAll
-        for (Region region : regionDAO.getAll()) {
-            System.out.println(region.getId() + " - " + region.getName());
-        }
+//        for (Region region : regionDAO.getAll()) {
+//            System.out.println(region.getId() + " - " + region.getName());
+//        }
 
         // Test getById
-        Region regionById = new Region();
-        regionById = regionDAO.getById(1);
-
-        System.out.println();
-        System.out.println("Get Region By Id");
-        System.out.println("Id " + regionById.getId() + " - " + regionById.getName());
+//        Region regionById = new Region();
+//        regionById = regionDAO.getById(1);
+//
+//        System.out.println();
+//        System.out.println("Get Region By Id");
+//        System.out.println("Id " + regionById.getId() + " - " + regionById.getName());
 
         // Test Delete
-        String result = regionDAO.delete(6) ? "Deleted" : "Failed to delete";
-        System.out.println(result);
+//        String result = regionDAO.delete(6) ? "Deleted" : "Failed to delete";
+//        System.out.println(result);
+
+
         
     }
     
